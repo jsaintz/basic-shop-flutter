@@ -10,7 +10,7 @@ class CartProvider with ChangeNotifier {
     return {..._items};
   }
 
-  int get itemCount {
+  int get itemsCount {
     return _items.length;
   }
 
@@ -28,6 +28,7 @@ class CartProvider with ChangeNotifier {
         product.id,
         (existingItem) => CartItem(
           id: existingItem.id,
+          productId: product.id,
           title: existingItem.title,
           quantity: existingItem.quantity,
           price: existingItem.price,
@@ -37,6 +38,7 @@ class CartProvider with ChangeNotifier {
       _items.putIfAbsent(
         product.id,
         () => CartItem(
+          productId: product.id,
           id: Random().nextDouble().toString(),
           title: product.title,
           quantity: 1,
@@ -44,6 +46,11 @@ class CartProvider with ChangeNotifier {
         ),
       );
     }
+    notifyListeners();
+  }
+
+  void removeItem(String productId) {
+    _items.remove(productId);
     notifyListeners();
   }
 }
