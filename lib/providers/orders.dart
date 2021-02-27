@@ -2,24 +2,28 @@ import 'dart:math';
 
 import 'package:basic_shop_flutter/models/cart.dart';
 import 'package:basic_shop_flutter/models/order.dart';
+import 'package:basic_shop_flutter/providers/cart.dart';
 import 'package:flutter/cupertino.dart';
 
 class OrdersProvider with ChangeNotifier {
-  List<Order> _orders = [];
+  List<Order> _items = [];
 
-  List<Order> get orders {
-    return [..._orders];
+  List<Order> get items {
+    return [..._items];
   }
 
-  void addOrder(List<CartItem> products, double total) {
-    final total = products.fold(0.0, (t, i) => t + (i.price * i.quantity));
-    _orders.insert(
+  int get itemsCount {
+    return _items.length;
+  }
+
+  void addOrder(CartProvider cart) {
+    _items.insert(
       0,
       Order(
         id: Random().nextDouble().toString(),
-        total: total,
+        total: cart.totalAmount,
         date: DateTime.now(),
-        products: products,
+        products: cart.items.values.toList(),
       ),
     );
     notifyListeners();

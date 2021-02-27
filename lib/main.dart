@@ -1,7 +1,9 @@
 import 'package:basic_shop_flutter/providers/cart.dart';
+import 'package:basic_shop_flutter/providers/orders.dart';
 import 'package:basic_shop_flutter/providers/products.dart';
 import 'package:basic_shop_flutter/utils/app_routes.dart';
 import 'package:basic_shop_flutter/views/cart_screen.dart';
+import 'package:basic_shop_flutter/views/order_screen.dart';
 import 'package:basic_shop_flutter/views/product_detail_screen.dart';
 import 'package:basic_shop_flutter/views/products_overview_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => new CartProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => new OrdersProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Bob Store',
@@ -29,10 +34,12 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        home: ProductOverviewScreen(),
+        // home: ProductOverviewScreen(),
         routes: {
+          AppRoutes.HOME: (ctx) => ProductOverviewScreen(),
           AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailScreen(),
           AppRoutes.CART: (ctx) => CartScreen(),
+          AppRoutes.ORDERS: (ctx) => OrdersScreen(),
         },
       ),
     );
