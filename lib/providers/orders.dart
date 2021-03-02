@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:basic_shop_flutter/models/cart.dart';
 import 'package:basic_shop_flutter/models/order.dart';
 import 'package:basic_shop_flutter/providers/cart.dart';
 import 'package:flutter/cupertino.dart';

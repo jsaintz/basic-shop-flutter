@@ -58,4 +58,23 @@ class CartProvider with ChangeNotifier {
     _items = {};
     notifyListeners();
   }
+
+  void removeSingleItem(productId) {
+    if (!_items.containsKey(productId)) {
+      _items.remove(productId);
+    } else {
+      _items.update(
+        productId,
+        (existingItem) => CartItem(
+          id: existingItem.productId,
+          productId: productId,
+          title: existingItem.title,
+          quantity: existingItem.quantity - 1,
+          price: existingItem.price,
+        ),
+      );
+    }
+  }
+
+  notifyListeners();
 }

@@ -27,4 +27,3 @@ This project was developed with Flutter and Dart.
 
 - [provider](https://pub.dev/packages/provider) for State Management.
 - [intl](https://pub.dev/packages/intl) for internationalization and localization facilities, including message translation, plurals and genders.
-
